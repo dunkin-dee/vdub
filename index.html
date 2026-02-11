@@ -29,6 +29,26 @@
             position: relative;
         }
 
+        .photo-container {
+            margin-bottom: 40px;
+            animation: fadeIn 1s ease-in;
+        }
+
+        .photo-container img {
+            max-width: 100%;
+            width: 300px;
+            height: 300px;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 6px solid #ff6b9d;
+            box-shadow: 0 10px 40px rgba(214, 51, 132, 0.3);
+            transition: transform 0.3s ease;
+        }
+
+        .photo-container img:hover {
+            transform: scale(1.05);
+        }
+
         h1 {
             font-size: clamp(1.8rem, 5vw, 3.5rem);
             color: #d63384;
@@ -37,6 +57,13 @@
             line-height: 1.4;
             text-shadow: 2px 2px 4px rgba(214, 51, 132, 0.1);
             font-family: 'Brush Script MT', cursive, 'Georgia', serif;
+        }
+
+        @media (max-width: 500px) {
+            .photo-container img {
+                width: 250px;
+                height: 250px;
+            }
         }
 
         .question-section {
@@ -203,6 +230,9 @@
 </head>
 <body>
     <div class="container">
+        <div class="photo-container">
+            <img src="img1.jpg" alt="Us together 💕">
+        </div>
         <div class="question-section" id="questionSection">
             <h1>Victoria Dube<br>will you be my valentine?</h1>
             <div class="buttons-container">
@@ -215,6 +245,8 @@
             <h2>Yay! 🎉💕</h2>
             <img id="celebrationGif" src="" alt="Celebration!">
             <p>I'm so happy! 💖</p>
+            <p>Get ready for cuddles</p>
+            <p>and a cozy home date this Saturday</p>
         </div>
     </div>
 
@@ -230,16 +262,10 @@
 
         // Array of celebration GIF URLs from Giphy
         const celebrationGifs = [
-            'https://media.giphy.com/media/g9582DNuQppxC/giphy.gif',
-            'https://media.giphy.com/media/artj92V8o75VPL7AeQ/giphy.gif',
             'https://media.giphy.com/media/l0MYt5jPR6QX5pnqM/giphy.gif',
-            'https://media.giphy.com/media/26tknCqiJrBQG6bxC/giphy.gif',
-            'https://media.giphy.com/media/3oKIPu1AxMWB2xlwl2/giphy.gif',
             'https://media.giphy.com/media/LZElUsjl1Bu6c/giphy.gif',
             'https://media.giphy.com/media/KYElw07kzDspaBOwf9/giphy.gif',
-            'https://media.giphy.com/media/kyLYXonQYYfwYDIeZl/giphy.gif',
-            'https://media.giphy.com/media/l0Iy69RBwtdmvwkIo/giphy.gif',
-            'https://media.giphy.com/media/VgU0hXkGyCePnLLfHJ/giphy.gif'
+            'https://media.giphy.com/media/kyLYXonQYYfwYDIeZl/giphy.gif'
         ];
 
         // Make "no" button swim away
@@ -290,7 +316,9 @@
         yesBtn.addEventListener('click', celebrate);
 
         function celebrate() {
+            const photoContainer = document.querySelector('.photo-container');
             questionSection.style.display = 'none';
+            photoContainer.style.display = 'none';
             celebration.classList.add('active');
             
             // Select random celebration GIF
